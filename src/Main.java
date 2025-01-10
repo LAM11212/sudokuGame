@@ -4,7 +4,10 @@ public class Main {
 
         drawBoard drawing = new drawBoard();
 
+        drawing.fillBoard();
         drawing.draw();
+
+
 
     }
 }
