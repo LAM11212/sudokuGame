@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class drawBoard {
@@ -37,7 +39,7 @@ public class drawBoard {
                         board[i][j] = val;
                         System.out.print(val);
                     } else {
-                        System.out.print(" ");
+                        System.out.print("x");
                     }
                 }
             }
@@ -51,7 +53,48 @@ public class drawBoard {
 
     public int isValid(int[][] board, int row, int col) {
         Random random = new Random();
-        return random.nextInt(9) + 1;
+        ArrayList<Integer> nums = new ArrayList<>();
+
+        for (int i = 1; i < 10; i++) {
+            nums.add(i);
+        }
+
+        Collections.shuffle(nums, random);
+
+        for (int num : nums) {
+            if(validPlace(board, row, col, num)) {
+                return num;
+            }
+        }
+        return 0;
     }
+
+    public boolean validPlace(int[][] board, int row, int col, int num) {
+
+        for(int c = 0; c < 9; c++) {
+            if(board[row][c] == num) {
+                return false;
+            }
+        }
+
+        for(int r = 0; r < 9; r++) {
+            if(board[r][col] == num) {
+                return false;
+            }
+        }
+
+        int check3x3ROW = (row / 3) * 3;
+        int check3x3COL = (col / 3) * 3;
+
+        for(int r = check3x3ROW; r < check3x3ROW + 3; r++) {
+            for(int c = check3x3COL; c < check3x3COL + 3; c++) {
+                if(board[r][c] == num) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    //TODO create recursive backtracking solving algorithm.
 
 }
