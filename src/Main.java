@@ -4,8 +4,8 @@ public class Main {
 
         drawBoard drawing = new drawBoard();
 
-        drawing.fillBoard();
-        drawing.draw();
+        int[][] board = drawing.fillBoard();
+        drawing.draw(board);
 
 
 
