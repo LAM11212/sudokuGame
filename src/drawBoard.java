@@ -95,6 +95,5 @@ public class drawBoard {
         }
         return true;
     }
-    //TODO create recursive backtracking solving algorithm.
 
 }
